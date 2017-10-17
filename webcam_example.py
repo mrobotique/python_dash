@@ -20,8 +20,8 @@ def SendMail(ImgFileName):
     msg.attach(image)
     Server = 'smtp.gmail.com'
     Port =   587
-    UserName ='miguel.aguas@gmail.com'
-    UserPassword = '@L1730086*'
+    UserName ='*****'
+    UserPassword = '*****'
     s = smtplib.SMTP(Server, Port)
     s.ehlo()
     s.starttls()
