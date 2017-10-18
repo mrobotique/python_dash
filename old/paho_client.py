@@ -9,11 +9,13 @@ def on_message(client, userdata, msg):
     global Data
 ##    print(msg.topic+" "+str(msg.qos)+" "+str(msg.payload))    
     Data = str(msg.payload)
+
+
 client = paho.Client()
 client.on_subscribe = on_subscribe
 client.on_message = on_message
 client.connect("localhost", 1883)
-client.subscribe("hello/world", qos=1)
+client.subscribe("dashboard/sensors/#", qos=1)
 
 Data = 0
 a = 1
