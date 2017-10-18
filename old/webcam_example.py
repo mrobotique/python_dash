@@ -40,6 +40,6 @@ def TakePic():
 
 
 TakePic()
-SendMail('/home/pi/dashboard/python/photo.jpg')
+#SendMail('/home/pi/dashboard/python/photo.jpg')
 
 

@@ -1,0 +1,10 @@
+#dictionary
+martin: {name: Martin D'vloper, job: Developer, skill: Elite}
+
+#list
+fruits: ['Apple', 'Orange', 'Strawberry', 'Mango']
+
+integer: 25
+string: "25"
+float: 25.0
+boolean: No

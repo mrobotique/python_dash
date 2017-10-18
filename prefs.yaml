@@ -1,0 +1,28 @@
+#YAML PREFS FOR THE HOME AUTOMATION DASHBOARD SYTSTEM
+#BY MROBOTIQUE
+
+#SYSTEM CONF
+    mosquitto: {server: "localhost", port: 1883}
+    launch_list: ["1.py", "2.py", "3.py", "4.py"]
+    dashing: {url: "localhost", port: 3030, "auth_token": "YOUR_AUTH_TOKEN"}
+
+    #MOTION DETECTOR -delay in [s]-
+    motion: {delay: 0.2, gpio_pir_pin: 11 }
+    
+    #PICTURE FRAME to FRAME DELAY [s]
+    picture: {frame_delay: 5}
+    
+    #WAZE [s]
+    waze: {refreshing_rate: 60, region: "NA"}
+    waze_users: {miguel: {from: "795 Sterling Lyon Parkway, Winnipeg", to: "117 Kind Edward Street, Winnipeg", region: "NA"}, gloria: {from: "795 Sterling Lyon Parkway, Winnipeg", to: "555 Notre Dame Avenue, Winnipeg", region: "NA"}}
+    
+    #ALERTS -refreshing date in [s]-
+    alerts: {rssfeedurl: "https://weather.gc.ca/rss/battleboard/mb9_e.xml", refreshing_rate: 1800}
+    
+    #INDOOR TEMPERATURE SENSOR -refreshing rate in [s] - temps in celcius-
+    temperature: {refreshing_rate: 300, max: 40, min: 10, absolute_max: 60} #maybe fire?
+    
+    #WHO IS IN HOME?
+    mac_address_list: {miguel: "5C:51:88:8C:A2:02", gloria: "5C:51:88:8C:A2:02"}
+
+
