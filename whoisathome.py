@@ -9,7 +9,8 @@ import os
 import time
 
 def on_publish(client, userdata, mid):
-    print("mid: "+str(mid))
+    #print("mid: "+str(mid))
+    pass
 
 def getPrefs(PrefFile):
     f = open(PrefFile,"r")
@@ -26,9 +27,8 @@ def checkHomeAlone(auth_list):
         #print auth_list[key]
         if (auth_list[key] in arpscan_output):
             home_alone = home_alone and False
-            print auth_list[key]
-            
-    return home_alone
+            #print auth_list[key]
+        return home_alone
          
     
 def main():
