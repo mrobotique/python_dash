@@ -17,7 +17,7 @@
     waze_users: {miguel: {from: "795 Sterling Lyon Parkway, Winnipeg", to: "117 Kind Edward Street, Winnipeg", region: "NA"}, gloria: {from: "795 Sterling Lyon Parkway, Winnipeg", to: "555 Notre Dame Avenue, Winnipeg", region: "NA"}}
     
     #ALERTS -refreshing date in [s]-
-    alerts: {rssfeedurl: "https://weather.gc.ca/rss/battleboard/mb9_e.xml", refreshing_rate: 1800}
+    alerts: {rssfeedurl: "https://weather.gc.ca/rss/battleboard/mb9_e.xml", refreshing_rate: 300}
     
     #INDOOR TEMPERATURE SENSOR -refreshing rate in [s] - temps in celcius-
     temperature: {refreshing_rate: 60, max: 40, min: 10, absolute_max: 60} #maybe fire?

@@ -51,8 +51,8 @@ def main():
     
     
 if __name__ == "__main__":
-    main()
-#    try:
-#        main()
-#    except:
-#        print "fatal error"
+#    main()
+    try:
+        main()
+    except:
+        print "fatal error"

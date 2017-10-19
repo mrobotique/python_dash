@@ -47,28 +47,27 @@ def getDriveTime(From,to,region):
 #
 #    return succes
     
-def main():
     
-    PrefFile =  "prefs.yaml"
-    
-    YamlPrefs = getPrefs(PrefFile)
-    
-    client = paho.Client()
-    client.on_publish = on_publish
-    client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
-    client.loop_start()
-    
-    while(True):
-        for key in YamlPrefs['waze_users']:
-            DriveTime = getDriveTime(YamlPrefs['waze_users'][key]['from'],YamlPrefs['waze_users'][key]['to'],YamlPrefs['waze_users'][key]['region'])
-            TopicName = 'dashboard/waze/'+key
-            (rc, mid) = client.publish(TopicName, DriveTime, qos=2)
-        
-        time.sleep(YamlPrefs['waze']['refreshing_rate'])
+   
     
 if __name__ == "__main__":
     
     try:
-        main()  
+        PrefFile =  "prefs.yaml"
+        YamlPrefs = getPrefs(PrefFile)
+        client = paho.Client()
+        client.on_publish = on_publish
+        client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
+        client.loop_start()
+    
+        while(True):
+            for key in YamlPrefs['waze_users']:
+                DriveTime = getDriveTime(YamlPrefs['waze_users'][key]['from'],YamlPrefs['waze_users'][key]['to'],YamlPrefs['waze_users'][key]['region'])
+                TopicName = 'dashboard/waze/'+key
+                (rc, mid) = client.publish(TopicName, DriveTime, qos=2)
+                
+            time.sleep(YamlPrefs['waze']['refreshing_rate'])  
     except:
+        (rc, mid) = client.publish(TopicName, "KO", qos=2)	
+        time.sleep(0.1)
         print "fatal error"
