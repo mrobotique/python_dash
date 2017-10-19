@@ -20,9 +20,9 @@
     alerts: {rssfeedurl: "https://weather.gc.ca/rss/battleboard/mb9_e.xml", refreshing_rate: 1800}
     
     #INDOOR TEMPERATURE SENSOR -refreshing rate in [s] - temps in celcius-
-    temperature: {refreshing_rate: 300, max: 40, min: 10, absolute_max: 60} #maybe fire?
+    temperature: {refreshing_rate: 60, max: 40, min: 10, absolute_max: 60} #maybe fire?
     
     #WHO IS IN HOME?
-    mac_address_list: {miguel: "5C:51:88:8C:A2:02", gloria: "5C:51:88:8C:A2:02"}
+    mac_address_list: {miguel: "5c:51:88:8c:a2:02", gloria: "5c:51:88:90:cc:ee"}
 
 
