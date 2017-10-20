@@ -31,28 +31,26 @@ def checkHomeAlone(auth_list):
         return home_alone
          
     
-def main():
-    PrefFile =  "prefs.yaml"
-    TopicName = "dashboard/sensors/homealone"
-    YamlPrefs = getPrefs(PrefFile)
-    
-    client = paho.Client()
-    client.on_publish = on_publish
-    client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
-    client.loop_start()
-    
-    while(True):
-        HomeAlone =checkHomeAlone(YamlPrefs['mac_address_list'])
-        (rc, mid) = client.publish(TopicName, str(HomeAlone), qos=2)
-        if (HomeAlone):
-            time.sleep(0.1)
-        else:
-            time.sleep(15)
-    
-    
 if __name__ == "__main__":
-#    main()
     try:
-        main()
+        PrefFile =  "prefs.yaml"
+        TopicName = "dashboard/sensors/homealone"
+        YamlPrefs = getPrefs(PrefFile)
+        
+        client = paho.Client()
+        client.on_publish = on_publish
+        client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
+        client.loop_start()
+        
+        while(True):
+            HomeAlone =checkHomeAlone(YamlPrefs['mac_address_list'])
+            (rc, mid) = client.publish(TopicName, str(HomeAlone), qos=2)
+            if (HomeAlone):
+                time.sleep(0.1)
+            else:
+                time.sleep(15)
+
     except:
+        (rc, mid) = client.publish(TopicName, "KO", qos=2)	
+        time.sleep(0.1)
         print "fatal error"

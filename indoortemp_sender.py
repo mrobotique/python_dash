@@ -42,30 +42,29 @@ def read_temp():
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return [temp_c, temp_f]
 
-def main():
-    PrefFile =  "prefs.yaml"
-    TopicName = "dashboard/sensors/indoortemp"
-    YamlPrefs = getPrefs(PrefFile)
-    
-    client = paho.Client()
-    client.on_publish = on_publish
-    client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
-    client.loop_start()
-    
-    while(True):
-        Temp = read_temp()
-        print Temp
-        if (Temp[0]<0):
-            Temp[0] = round(Temp[0])
-        else:
-            Temp[0] = round(Temp[0],1)
-
-        (rc, mid) = client.publish(TopicName, str(Temp[0]), qos=2)
-        time.sleep(YamlPrefs['temperature']['refreshing_rate'])    
-    
     
 if __name__ == "__main__":
     try:
-        main()
+        PrefFile =  "prefs.yaml"
+        TopicName = "dashboard/sensors/indoortemp"
+        YamlPrefs = getPrefs(PrefFile)
+        
+        client = paho.Client()
+        client.on_publish = on_publish
+        client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
+        client.loop_start()
+        
+        while(True):
+            Temp = read_temp()
+            print Temp
+            if (Temp[0]<0):
+                Temp[0] = round(Temp[0])
+            else:
+                Temp[0] = round(Temp[0],1)
+
+            (rc, mid) = client.publish(TopicName, str(Temp[0]), qos=2)
+            time.sleep(YamlPrefs['temperature']['refreshing_rate'])    
     except:
+        (rc, mid) = client.publish(TopicName, "KO", qos=2)	
+        time.sleep(0.1)
         print "fatal error"

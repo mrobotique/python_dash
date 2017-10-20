@@ -46,5 +46,7 @@ if __name__ == "__main__":
                 toggle = LastDetection
                 (rc, mid) = client.publish(TopicName, str(LastDetection), qos=2)
     except:
-        (rc, mid) = client.publish(TopicName, "error", qos=2)
+        (rc, mid) = client.publish(TopicName, "KO", qos=2)	
+        time.sleep(0.1)
+        print "fatal error"
 
