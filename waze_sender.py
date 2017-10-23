@@ -23,7 +23,8 @@ def on_publish(client, userdata, mid):
 
 def getDriveTime(From,to,region):
     try:
-        routeTime = WazeRouteCalculator.WazeRouteCalculator(From,to, region,log_lvl=None) 
+        routeTime = WazeRouteCalculator.WazeRouteCalculator(From,to, region,log_lvl=None)
+        #routeTime = WazeRouteCalculator.WazeRouteCalculator(From,to)
         ###log_lvl=None silence output and just get the return value
         routeTime_info = routeTime .calc_route_info()
         return round(routeTime_info[0])
@@ -68,6 +69,8 @@ if __name__ == "__main__":
                 
             time.sleep(YamlPrefs['waze']['refreshing_rate'])  
     except:
-        (rc, mid) = client.publish(TopicName, "KO", qos=2)	
-        time.sleep(0.1)
+        for key in YamlPrefs['waze_users']:
+            TopicName = 'dashboard/waze/'+key
+            (rc, mid) = client.publish(TopicName, "KO", qos=2)	
+            time.sleep(0.1)
         print "fatal error"
