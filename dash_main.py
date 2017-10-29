@@ -68,7 +68,7 @@ def on_message(client, userdata, msg):
                     
         if (Data[1] == "alerts"):
             widget_index = 2
-            payload = { "auth_token": token,"value":msg.payload}
+            payload = { "auth_token": token,"text":msg.payload}
             SendToDashboard(widgets[widget_index],payload)
 
 

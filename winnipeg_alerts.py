@@ -28,16 +28,16 @@ def getAlerts(url):
     #print "RSS" + rssMessage
 
 if __name__ == "__main__":
-    try:
-        PrefFile =  "prefs.yaml"
-        TopicName = "dashboard/alerts/winnipeg"
-        YamlPrefs = getPrefs(PrefFile)
-        
-        client = paho.Client()
-        client.on_publish = on_publish
-        client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
-        client.loop_start()
+    PrefFile =  "prefs.yaml"
+    TopicName = "dashboard/alerts/winnipeg"
+    YamlPrefs = getPrefs(PrefFile)
     
+    client = paho.Client()
+    client.on_publish = on_publish
+    client.connect(YamlPrefs['mosquitto']['server'],YamlPrefs['mosquitto']['port'])
+    client.loop_start()
+    try:
+   
         while(True):
             CurentAlert = getAlerts(YamlPrefs['alerts']['rssfeedurl'])
             (rc, mid) = client.publish(TopicName, CurentAlert, qos=2)
